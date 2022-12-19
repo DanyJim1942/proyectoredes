@@ -1,0 +1,400 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger" style="display: flex; justify-content: space-between;flex-direction: row; align-items: center;" *ngIf="elegirMenu != 1 && elegirMenu != 2 && elegirMenu != 3">
+    <a class="navbar-brand"><img src="../../assets/images/Logo.svg" width="50vw" height="50vh"></a>
+    
+    <ul style="display: flex; justify-content: space-between; flex-direction: row; margin-left: 5vw; align-items: center;">
+        <li class="nav-item" >
+            <a class="btn nav-link" routerLink="/inicio" [routerLinkActive]="['active']">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn nav-link" routerLink="/contacto" [routerLinkActive]="['active']">Contacto</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn nav-link" routerLink="/preguntas" [routerLinkActive]="['active']">Preguntas Frecuentes</a>
+        </li>
+    </ul>
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <a class="btn btn-outline-success my-2 my-sm-0" style="color: white;" data-toggle="modal"
+            data-target="#iniciarSesion">Iniciar Sesión</a>
+        <a class="btn btn-outline-success my-2 my-sm-0" style="color: white;" data-toggle="modal"
+            data-target="#registrarse">Registrarse</a>
+    </div>
+
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger" style="display: flex; justify-content: space-between;flex-direction: row; align-items: center;" *ngIf="elegirMenu == 1">
+
+<a class="navbar-brand"><img src="../../assets/images/Logo.svg" width="50"></a>
+
+<ul style="display: flex; justify-content: space-between; flex-direction: row; margin-left: 5vw; align-items: center;">
+    <li class="nav-item">
+        <a class="nav-link" routerLink="/inicio" [routerLinkActive]="['active']">Inicio</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="/hijos" [routerLinkActive]="['active']">Administrar Hijo(s)</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="/tienda" [routerLinkActive]="['active']">Catalogo</a>
+    </li>
+</ul>
+
+<h4 style="color: white;">Padre Logeado - Nombre: {{nomb}}</h4>
+
+<a class="btn btn-success my-2 my-sm-0" style="color: white;" (click)="cerrarSesion()" routerLink="/inicio"  [routerLinkActive]="['active']">Cerrar Sesión</a>
+
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger" style="display: flex; justify-content: space-between;flex-direction: row; align-items: center;" *ngIf="elegirMenu == 2">
+
+    <a class="navbar-brand"><img src="../../assets/images/Logo.svg" width="50"></a>
+    
+    <ul style="display: flex; justify-content: space-between; flex-direction: row; margin-left: 5vw; align-items: center;">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/inicio" [routerLinkActive]="['active']">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/hacerCarta" [routerLinkActive]="['active']">Hacer Carta a Sanata¡</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/tienda" [routerLinkActive]="['active']">Catalogo</a>
+        </li>
+    </ul>
+    
+    <h4 style="color: white;">Hijo Logeado - Nombre: {{nomb}}</h4>
+    
+    <a class="btn btn-success my-2 my-sm-0" style="color: white;" (click)="cerrarSesion()" routerLink="/inicio"  [routerLinkActive]="['active']">Cerrar Sesión</a>
+</nav> 
+
+<!-- Modal Telefono -->
+
+<div class="modal fade" id="iniciarSesionTelefono" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Iniciar Sesión con Teléfono</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <form class="form-group" [formGroup]="loginTelefonoForm">
+
+                <label>Número de Telefono</label>
+                <input class="form-control" type="text" formControlName="numero"
+                    placeholder="Ingresa tu número de teléfono">
+
+                <div *ngIf="loginTelefonoForm.controls['numero'].invalid && (loginTelefonoForm.controls['numero'].dirty || loginTelefonoForm.controls['numero'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="loginTelefonoForm.controls['numero'].errors?.['required']">
+                        Por favor ingresa tu numero electrónico.
+                    </div>
+
+                    <div *ngIf="loginTelefonoForm.controls['numero'].errors?.['pattern']">
+                        Por favor ingresa sólo números y 10 dígitos.
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="!loginTelefonoForm.valid" type="button" class="btn btn-success"
+                (click)="loginConTelefono()">Iniciar Sesión</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Modal Login -->
+
+<div class="modal fade" id="iniciarSesion" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Iniciar Sesión</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <form class="form-group" [formGroup]="loginForm">
+
+                <label>Correo electrónico</label>
+                <input class="form-control" [(ngModel)]="correo" type="text" formControlName="correo"
+                    placeholder="Ingresa tu correo electronico">
+
+                <div *ngIf="loginForm.controls['correo'].invalid && (loginForm.controls['correo'].dirty || loginForm.controls['correo'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="loginForm.controls['correo'].errors?.['required']">
+                        Por favor ingresa tu correo electrónico.
+                    </div>
+
+                    <div *ngIf="loginForm.controls['correo'].errors?.['pattern']">
+                        Por favor ingresa el formato correcto <a class="alert-link">ejemplo@correo.com</a>.
+                    </div>
+
+                </div>
+
+                <br>
+
+                <label>Contraseña</label>
+                <input type="password" class="form-control" [(ngModel)]="contra" formControlName="contrasena"
+                    placeholder="Ingresa tu contraseña.">
+
+                <div *ngIf="loginForm.controls['contrasena'].invalid && (loginForm.controls['contrasena'].dirty || loginForm.controls['contrasena'].touched)"
+                    class="alert alert-danger">
+
+                    <div *ngIf="loginForm.controls['contrasena'].errors?.['required']">
+                        Por favor ingresa tu contraseña.
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="!loginForm.valid" type="button" class="btn btn-success"
+                (click)="logU()" data-dismiss="modal">Iniciar Sesión</button>
+            <button type="button" class="btn btn-primary" (click)="loginConGoogle()">Google <img src="../../assets/images/google.svg" width="20px"> </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                data-target="#iniciarSesionTelefono">Telefono <img src="../../assets/images/phone.svg" width="20px"></button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Modal Registro -->
+
+
+<div class="modal fade" id="registrarse"  tabindex="-1" role="dialog" aria-hidden="true" >
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Registrarse</h5>
+           
+        </div>
+
+        <div style="padding: 5vh;">
+        
+            
+                <div *ngIf="!verdadera"  class="modal-body" >
+
+                    <form class="form-group" [formGroup]="registroForm">
+    
+                        <label>Registro como hijo</label><br>
+                        <div class="modal-content" *ngIf="verdadera2">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Iniciar Sesión</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                
+                                <form class="form-group" [formGroup]="loginForm">
+                
+                                    <label>Correo electrónico</label>
+                                    <input class="form-control" type="text" formControlName="correo"
+                                        placeholder="Ingresa tu correo electronico">
+                
+                                    <div *ngIf="loginForm.controls['correo'].invalid && (loginForm.controls['correo'].dirty || loginForm.controls['correo'].touched)"
+                                        class="alert alert-danger">
+                                        <div *ngIf="loginForm.controls['correo'].errors?.['required']">
+                                            Por favor ingresa tu correo electrónico.
+                                        </div>
+                
+                                        <div *ngIf="loginForm.controls['correo'].errors?.['pattern']">
+                                            Por favor ingresa el formato correcto <a class="alert-link">ejemplo@correo.com</a>.
+                                        </div>
+                
+                                    </div>
+                
+                                    <br>
+                
+                                    <label>Contraseña</label>
+                                    <input type="password" class="form-control" formControlName="contrasena"
+                                        placeholder="Ingresa tu contraseña.">
+                
+                                    <div *ngIf="loginForm.controls['contrasena'].invalid && (loginForm.controls['contrasena'].dirty || loginForm.controls['contrasena'].touched)"
+                                        class="alert alert-danger">
+                
+                                        <div *ngIf="loginForm.controls['contrasena'].errors?.['required']">
+                                            Por favor ingresa tu contraseña.
+                                        </div>
+                
+                                    </div>
+                
+                                </form>
+                
+                            </div>
+                            <div class="modal-footer">
+                                <button [disabled]="!loginForm.valid" type="button" class="btn btn-success"
+                                    (click)="funcionverdadera2()" >Iniciar Sesión</button>
+                                <button type="button" class="btn btn-primary" (click)="loginConGoogle()">Google <img src="../../assets/images/google.svg" width="20px"> </button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                                    data-target="#iniciarSesionTelefono">Telefono <img src="../../assets/images/phone.svg" width="20px"></button>
+                            </div>
+                        </div>
+                        
+                        <label>Correo Electronico</label>
+                        <input class="form-control" type="text" formControlName="correo" placeholder="Ingresa tu email">
+                        <small class="form-text text-muted">Nunca compartiremos información personal.</small>
+    
+                        <div *ngIf="registroForm.controls['correo'].invalid && (registroForm.controls['correo'].dirty || registroForm.controls['correo'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="registroForm.controls['correo'].errors?.['required']">
+                                Por favor ingresa tu correo electrónico.
+                            </div>
+    
+                            <div *ngIf="registroForm.controls['correo'].errors?.['pattern']">
+                                Por favor ingresa el formato correcto <a class="alert-link">ejemplo@correo.com</a>.
+                            </div>
+    
+                        </div> 
+                        <label>Nombre de Usuario</label>
+                        <input class="form-control" type="text" formControlName="username" placeholder="Ingresa tu nombre de usuario">
+    
+                        <div *ngIf="registroForm.controls['username'].invalid && (registroForm.controls['username'].dirty || registroForm.controls['username'].touched)"
+                            class="alert alert-danger">
+    
+                            <div *ngIf="registroForm.controls['username'].errors?.['required']">
+                                Por favor ingresa tu nombre de usuario.
+                            </div>
+    
+                            <div *ngIf="registroForm.controls['username'].errors?.['pattern']">
+                                Por favor ingresa solo <a class="alert-link">letras sin espacios.</a>
+                            </div>
+    
+                        </div>
+                        <br>
+                        <label>Contraseña</label>
+                        <input type="password" class="form-control" formControlName="contrasena"
+                            placeholder="Ingrese su contraseña.">
+    
+                        <div *ngIf="registroForm.controls['contrasena'].invalid && (registroForm.controls['contrasena'].dirty || registroForm.controls['contrasena'].touched)"
+                            class="alert alert-danger">
+    
+                            <div *ngIf="registroForm.controls['contrasena'].errors?.['required']">
+                                Por favor ingresa tu constraseña deseada.
+                            </div>
+    
+                        </div>
+                        <br>
+                        <label>Confirmar Contraseña</label>
+                        <input type="password" class="form-control" formControlName="confirmarContrasena"
+                            placeholder="Ingrese su contraseña.">
+    
+                        <div *ngIf="registroForm.controls['confirmarContrasena'].invalid && (registroForm.controls['confirmarContrasena'].dirty || registroForm.controls['confirmarContrasena'].touched)"
+                            class="alert alert-danger">
+    
+                            <div *ngIf="registroForm.controls['confirmarContrasena'].errors?.['required']">
+                                Por favor ingresa tu constraseña deseada.
+                            </div>
+    
+                        </div>
+    
+                        <div  class="alert alert-danger" *ngIf="registroForm.value.confirmarContrasena != registroForm.value.contrasena">
+                            Tus contraseñas no son idénticas.
+                        </div>
+                        
+    
+                    </form>
+                    <div class="modal-footer">
+                        <button [disabled]="!registroForm.valid || registroForm.value.confirmarContrasena != registroForm.value.contrasena" type="button" class="btn btn-success"
+                            (click)="registrarH()" data-dismiss="modal">Registrarse</button>
+                            <button type="button" class="btn btn-primary" (click)="loginConGoogle()">Google <img src="../../assets/images/google.svg" width="20px"> </button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                            data-target="#iniciarSesionTelefono">Telefono <img src="../../assets/images/phone.svg" width="20px"></button>
+                    </div>
+                </div>
+                <div *ngIf="verdadera" class="modal-body" >
+    
+                    <form class="form-group" [formGroup]="registroForm">
+    
+                        <label>Registro como Padre</label>
+                        <br>
+                        <label>Correo Electronico</label>
+                        <input class="form-control" type="text" formControlName="correo" placeholder="Ingresa tu email">
+                        <small class="form-text text-muted">Nunca compartiremos información personal.</small>
+    
+                        <div *ngIf="registroForm.controls['correo'].invalid && (registroForm.controls['correo'].dirty || registroForm.controls['correo'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="registroForm.controls['correo'].errors?.['required']">
+                                Por favor ingresa tu correo electrónico.
+                            </div>
+    
+                            <div *ngIf="registroForm.controls['correo'].errors?.['pattern']">
+                                Por favor ingresa el formato correcto <a class="alert-link">ejemplo@correo.com</a>.
+                            </div>
+    
+                        </div> 
+                        <label>Nombre de Usuario</label>
+                        <input class="form-control" type="text" formControlName="username" placeholder="Ingresa tu nombre de usuario">
+    
+                        <div *ngIf="registroForm.controls['username'].invalid && (registroForm.controls['username'].dirty || registroForm.controls['username'].touched)"
+                            class="alert alert-danger">
+    
+                            <div *ngIf="registroForm.controls['username'].errors?.['required']">
+                                Por favor ingresa tu nombre de usuario.
+                            </div>
+    
+                            <div *ngIf="registroForm.controls['username'].errors?.['pattern']">
+                                Por favor ingresa solo <a class="alert-link">letras sin espacios.</a>
+                            </div>
+    
+                        </div>
+                        <br>
+                        <label>Contraseña</label>
+                        <input type="password" class="form-control" formControlName="contrasena"
+                            placeholder="Ingrese su contraseña.">
+    
+                        <div *ngIf="registroForm.controls['contrasena'].invalid && (registroForm.controls['contrasena'].dirty || registroForm.controls['contrasena'].touched)"
+                            class="alert alert-danger">
+    
+                            <div *ngIf="registroForm.controls['contrasena'].errors?.['required']">
+                                Por favor ingresa tu constraseña deseada.
+                            </div>
+    
+                        </div>
+                        <br>
+                        <label>Confirmar Contraseña</label>
+                        <input type="password" class="form-control" formControlName="confirmarContrasena"
+                            placeholder="Ingrese su contraseña.">
+    
+                        <div *ngIf="registroForm.controls['confirmarContrasena'].invalid && (registroForm.controls['confirmarContrasena'].dirty || registroForm.controls['confirmarContrasena'].touched)"
+                            class="alert alert-danger">
+    
+                            <div *ngIf="registroForm.controls['confirmarContrasena'].errors?.['required']">
+                                Por favor ingresa tu constraseña deseada.
+                            </div>
+    
+                        </div>
+    
+                        <div  class="alert alert-danger" *ngIf="registroForm.value.confirmarContrasena != registroForm.value.contrasena">
+                            Tus contraseñas no son idénticas.
+                        </div>
+                        
+    
+                    </form>
+                    <div class="modal-footer">
+                        <button [disabled]="!registroForm.valid || registroForm.value.confirmarContrasena != registroForm.value.contrasena" type="button" class="btn btn-success"
+                            (click)="registrarP()" data-dismiss="modal">Registrarse</button>
+                            <button type="button" class="btn btn-primary" (click)="onRegisterForm()">Google <img src="../../assets/images/google.svg" width="20px"> </button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                            data-target="#iniciarSesionTelefono">Telefono <img src="../../assets/images/phone.svg" width="20px"></button>
+                    </div>
+                </div>
+                <button  type="button" class="btn btn-success" (click)="funcionverdadero()"
+                 >Registrarse como padre</button>
+                <button type="button" class="btn btn-success" (click)="funcionfalso()"
+                 >Registrarse como hijo</button>
+             
+        </div>
+    </div>
+</div>
+</div>

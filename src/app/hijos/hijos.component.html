@@ -1,0 +1,31 @@
+<br>
+
+<div class="container">
+
+    <h4>Información Hijos</h4>
+
+    <table class="table">
+     
+      <tr>
+        <th *ngFor="let column of headers">
+          {{column}}
+        </th>
+      </tr>
+
+      <tr *ngFor="let row of hijos">
+          <td>{{row.Nombre}}</td>
+      </tr>
+
+    </table>
+    <h4>Información Cartas</h4>
+
+    <table class="table">
+
+      <tr *ngFor="let row of cartas">
+        <td>{{row.Nombre}}</td>
+        <td>{{row.Carta}}</td>
+      </tr>
+
+    </table>
+
+</div>

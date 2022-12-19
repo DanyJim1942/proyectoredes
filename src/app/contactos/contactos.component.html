@@ -1,0 +1,56 @@
+<div class="container">
+
+    <br>
+    <h4>Formulario de Contacto</h4>
+
+    <hr>
+
+    <form class="form-group" [formGroup]="contactForm">
+
+        <label>Nombre completo</label>
+        <input class="form-control" type="text" formControlName="nombre" placeholder="Ingresa tu nombre">
+
+        <div *ngIf="contactForm.controls['nombre'].invalid && (contactForm.controls['nombre'].dirty || contactForm.controls['nombre'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="contactForm.controls['nombre'].errors?.['required']">
+                Por favor ingresa tu nombre completo.
+            </div>
+        </div>
+
+        <br>
+        <label>Correo electrónico</label>
+        <input class="form-control" type="text" formControlName="correo" placeholder="Ingresa tu email">
+
+        <div *ngIf="contactForm.controls['correo'].invalid && (contactForm.controls['correo'].dirty || contactForm.controls['correo'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="contactForm.controls['correo'].errors?.['required']">
+                Por favor ingresa tu correo electrónico.
+            </div>
+
+            <div *ngIf="contactForm.controls['correo'].errors?.['pattern']">
+                Por favor ingresa el formato correcto <a class="alert-link">ejemplo@correo.com</a>.
+            </div>
+
+        </div>
+
+        <br>
+        <label>Comentarios</label>
+        <textarea class="form-control" formControlName="mensaje" placeholder="Ingresa tu mensaje"></textarea>
+        
+        <div *ngIf="contactForm.controls['mensaje'].invalid && (contactForm.controls['mensaje'].dirty || contactForm.controls['mensaje'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="contactForm.controls['mensaje'].errors?.['required']">
+                Por favor ingresa tu mensaje.
+            </div>
+        </div>
+
+        <br>
+
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <button [disabled]="!contactForm.valid" class="btn btn-success" (click)="onSaveForm()" type="submit">Enviar</button>
+            <button class="btn btn-danger" (click)="onResetForm()">Cancelar</button>
+        </div>
+
+    </form>
+
+</div>

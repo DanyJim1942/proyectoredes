@@ -1,0 +1,40 @@
+<div class="container">
+
+    <br>
+    <h4>Manda tu Carta a Santa!</h4>
+
+    <hr>
+
+    <form class="form-group" [formGroup]="cartaForm">
+
+        <label>Nombre completo</label>
+        <input class="form-control" type="text" formControlName="nombre" placeholder="Ingresa tu nombre">
+
+        <div *ngIf="cartaForm.controls['nombre'].invalid && (cartaForm.controls['nombre'].dirty || cartaForm.controls['nombre'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="cartaForm.controls['nombre'].errors?.['required']">
+                Por favor ingresa tu nombre completo.
+            </div>
+        </div>
+        <br>
+        <br>
+        <label>Carta</label>
+        <textarea class="form-control" formControlName="mensaje" placeholder="Ingresa tu mensaje"></textarea>
+        
+        <div *ngIf="cartaForm.controls['mensaje'].invalid && (cartaForm.controls['mensaje'].dirty || cartaForm.controls['mensaje'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="cartaForm.controls['mensaje'].errors?.['required']">
+                Por favor ingresa tu mensaje.
+            </div>
+        </div>
+
+        <br>
+
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <button [disabled]="!cartaForm.valid" class="btn btn-success" (click)="onSaveForm()" type="submit">Enviar</button>
+            <button class="btn btn-danger" (click)="onResetForm()">Cancelar</button>
+        </div>
+
+    </form>
+
+</div>

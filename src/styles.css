@@ -1,0 +1,156 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro');
+
+* {
+  font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1{
+  font-size: 48px;
+}
+
+p{
+  font-size: 24px;
+}
+
+small{
+  font-size: 18px;
+}
+
+/* Botón */
+
+.button-main {
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-main:hover,
+.button-main:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.button-main:hover {
+  transform: translateY(-1px);
+}
+
+.button-main:active {
+  background-color: #F0F0F1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+/* Navbar */
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: rgb(35, 35, 35);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/*Lista de Estados*/
+
+select {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgb(30, 0, 255);
+  font-size: 22px;
+  height: 50px;
+  padding: 8px;
+  width: 250px;
+}
+
+/* Tabla */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+}
+
+th,
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #c7c7c7;
+  color: rgb(41, 41, 41);
+}
+
+/* Calendario */
+
+/* Always display the drop down caret */
+input[type="date"] {
+    color: #dcdcdc;
+}
+
+/* A few custom styles for date inputs */
+input[type="date"] {
+    appearance: none;
+    color: #646464;
+    font-size: 22px;
+    border:1px solid #ecf0f1;
+    background:#ecf0f1;
+    padding:5px;
+    display: inline-block !important;
+    visibility: visible !important;
+}
+
+input[type="date"], focus {
+    color: #646464;
+    box-shadow: none;
+}
